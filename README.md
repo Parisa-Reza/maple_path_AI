@@ -1,4 +1,4 @@
-# MaplePath AI
+#  🍁MaplePath AI
 
 ## Description
 Building an AI-powered Canada Tourist Visa Assistant using LangGraph, Django, Gemini, SurrealDB, and RAG to simulate a visa officer's decision-making workflow.
