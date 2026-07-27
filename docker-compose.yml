@@ -1,0 +1,25 @@
+services:
+  surrealdb:
+    image: surrealdb/surrealdb:latest
+    container_name: canada-tourist-visa-db
+    user: "0:0"
+
+    env_file:
+      - .env
+
+    environment:
+      SURREAL_USER: ${SURREAL_USERNAME}
+      SURREAL_PASS: ${SURREAL_PASSWORD}
+
+    command: >
+      start
+      rocksdb:/data/database.db
+
+    ports:
+      - "8001:8000"
+
+    volumes:
+      - surreal_data:/data
+
+volumes:
+  surreal_data:
