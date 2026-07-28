@@ -1,17 +1,29 @@
 from pydantic import BaseModel, Field
-from typing import Optional
 from uuid import uuid4
+from typing import Optional
+
+from schemas.applicant import Applicant
+from schemas.trip import Trip
+from schemas.document import Document
+from schemas.assessment import Assessment
+from schemas.interview import Interview
+from schemas.recommendation import Recommendation
 
 
 class Application(BaseModel):
+
     id: str = Field(default_factory=lambda: str(uuid4()))
 
-    applicant_name: str
+    applicant: Optional[Applicant] = None
 
-    passport_number: str
+    trip: Optional[Trip] = None
 
-    nationality: str
+    documents: Optional[Document] = None
 
-    purpose_of_visit: str
+    assessment: Optional[Assessment] = None
 
-    status: str = "draft"
+    interview: Optional[Interview] = None
+
+    recommendation: Optional[Recommendation] = None
+
+    status: str = "Draft"
