@@ -1,4 +1,5 @@
 from database.surreal import SurrealDBManager
+from repositories.decorators import with_connection
 
 
 class KnowledgeRepository:
@@ -10,31 +11,21 @@ class KnowledgeRepository:
     def __init__(self):
         self.db = SurrealDBManager()
 
+    @with_connection
     async def store_chunk(self, chunk: dict):
-
-        await self.db.connect()
 
         client = self.db.get_client()
 
-        result = await client.create(
+        return await client.create(
             "knowledge",
             chunk,
         )
 
-        await self.db.disconnect()
-
-        return result
-
+    @with_connection
     async def get_chunk(self, chunk_id: str):
-
-        await self.db.connect()
 
         client = self.db.get_client()
 
-        result = await client.select(
+        return await client.select(
             f"knowledge:{chunk_id}"
         )
-
-        await self.db.disconnect()
-
-        return result
