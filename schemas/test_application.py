@@ -1,16 +1,32 @@
 from schemas.application import Application
+from schemas.applicant import Applicant
+from schemas.trip import Trip
 
 
-def test_application_schema():
+def test_application():
 
-    application = Application(
-        applicant_name="John Doe",
-        passport_number="AB123456",
+    applicant = Applicant(
+        name="John Doe",
         nationality="Bangladesh",
-        purpose_of_visit="Tourism",
+        passport_number="AB123456",
+        occupation="Engineer",
+        marital_status="Single"
     )
 
-    assert application.applicant_name == "John Doe"
-    assert application.status == "draft"
+    trip = Trip(
+        purpose="Tourism",
+        travel_date="2026-08-01",
+        duration_days=15,
+        accommodation="Hotel"
+    )
 
-    print("\nApplication Schema Test Passed")
+    application = Application(
+        applicant=applicant,
+        trip=trip
+    )
+
+    print(application)
+
+    assert application.applicant.name == "John Doe"
+
+    print("\nApplication Test Passed")
